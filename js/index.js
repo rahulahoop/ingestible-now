@@ -14,11 +14,10 @@ $(document).ready(function (){
     let routes = $('.route');
 
     routes.each(function (n, elm) {
-        var route = $(elm).text()
+        var route = this.id;
+
         router.get(route, async function (req) {
-            const someContent = await getContent(req.path)
-            console.log("route content -->" + someContent);
-            document.getElementById("main-container").innerHTML = someContent;
+            document.getElementById("main-container").innerHTML = await getContent(req.path);
         });
     });
 
@@ -33,7 +32,7 @@ $(document).ready(function (){
 async function getContent(path){
     let content;
 
-    await fetch("/routes/"+path+".html")
+    await fetch("/ingestible-now/routes/"+path+".html")
         .then(function (res){content = res.text()})
 
 
