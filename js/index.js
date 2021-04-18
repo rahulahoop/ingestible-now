@@ -5,7 +5,7 @@ $(document).ready(function (){
     const router = new Router();
 
     // add index
-    router.get("/", async function (req){
+    router.get("/ingestible-now/", async function (req){
         const homeContent = await getContent("home")
         console.log("home -> ",  homeContent);
         document.getElementById("main-container").innerHTML = homeContent
