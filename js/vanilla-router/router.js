@@ -31,11 +31,11 @@ class Router {
     init(){
         this.routes.some(route=>{
 
-            var regEx = new RegExp(`^${route.uri}$`); // i'll explain this conversion to regular expression below
+            var regEx = new RegExp(`/ingestible-now/^${route.uri}$`); // i'll explain this conversion to regular expression below
             var path = window.location.pathname;
 
             if ("" !== window.location.hash){
-                regEx = new RegExp(`^#/${route.uri}$`)
+                regEx = new RegExp(`^/ingestible-now/#/${route.uri}$`)
                 path = window.location.hash;
             }
 
@@ -52,7 +52,7 @@ class Router {
     goto(path){
 
         this.routes.some(route =>{
-            let regEx = new RegExp(`^${route.uri}$`)
+            let regEx = new RegExp(`^/ingestible-now/${route.uri}$`)
 
             if (path.match(regEx)){
                 console.log("goto match!")
