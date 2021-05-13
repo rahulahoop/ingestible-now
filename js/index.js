@@ -17,6 +17,7 @@ $(document).ready(function (){
         var route = $(elm).text()
         router.get(route, async function (req) {
             const someContent = await getContent(req.path)
+            console.log(req)
             console.log("route content -->" + someContent);
             document.getElementById("main-container").innerHTML = someContent;
         });
@@ -33,7 +34,7 @@ $(document).ready(function (){
 async function getContent(path){
     let content;
 
-    await fetch("/routes/"+path+".html")
+    await fetch("/routes/"+path+"/index.html")
         .then(function (res){content = res.text()})
 
 

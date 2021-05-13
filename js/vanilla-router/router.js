@@ -22,7 +22,7 @@ class Router {
 
         // Step 5 - add route to the array of routes
         const route = {
-            uri, // in javascript, this is the same as uri: uri, callback: callback, avoids repition
+            uri,
             callback
         }
         this.routes.push(route);
@@ -31,19 +31,16 @@ class Router {
     init(){
         this.routes.some(route=>{
 
-            var regEx = new RegExp(`^${route.uri}$`); // i'll explain this conversion to regular expression below
-            var path = window.location.pathname;
+            let regEx = new RegExp(`^${route.uri}$`);
+            let path = window.location.pathname;
 
             if ("" !== window.location.hash){
-                regEx = new RegExp(`^#/${route.uri}$`)
-                path = window.location.hash;
+                path = window.location.hash.substring(2)
             }
 
-            console.log("outside init match for ", regEx, " ", path)
             if(path.match(regEx)){
                 // our route logic is true, return the corresponding callback
-                console.log("inside match for ", regEx, " ", path)
-                let req = { path } // i'll also explain this code below
+                let req = { path }
                 return route.callback.call(this, req);
             }
         })
@@ -55,9 +52,8 @@ class Router {
             let regEx = new RegExp(`^${route.uri}$`)
 
             if (path.match(regEx)){
-                console.log("goto match!")
 
-                let req = { path } // i'll also explain this code below
+                let req = { path }
                 return route.callback.call(this, req);
             }
 
